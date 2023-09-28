@@ -1,0 +1,66 @@
+html, body
+    margin: 0
+    padding: 0
+    width: 100%
+    height: 100%
+
+body
+    display: flex
+    justify-content: center
+    align-items: center
+    background-color: #000
+
+.horloge
+    position: relative
+    width: 300px
+    height: 300px
+    
+    &::before
+        content: ''
+        position: absolute
+        top: 0
+        left: 0
+        right: 0
+        bottom: 0
+        transform: scale(1.2)
+        border-radius: 50%
+        border: 1px solid #ffffff
+        background-color: transparant
+
+    &-list
+        padding: 0
+        list-style-type: none
+        
+    &-hour
+        position: absolute
+        transform: translate(-50%, -50%)
+        color: gold
+
+        &:nth-child(1),
+        &:nth-child(4),
+        &:nth-child(7),
+        &:nth-child(10)
+            font-size: 1.5em
+
+    &-aiguille
+        position: absolute
+        top: 50%
+        left: 50%
+        transform: translate(-50%, -100%)
+        transform-origin: bottom
+        
+        &.isHour, &.isMinut
+            width: 2px
+            background-color: #fff
+
+        &.isSecond
+            width: 1px
+            background-color: gold
+
+        &.isHour
+            height: 25%
+
+        &.isMinut, &.isSecond
+            height: 35%
+
+        
