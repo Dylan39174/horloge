@@ -2,9 +2,10 @@
 function init() {
     startHours();
     defineHour();
+
     setInterval(function () {
         defineHour();
-    }, 1000);
+    }, 1);
 };
 
 // Boucle sur les douze heures et appel 
@@ -30,13 +31,22 @@ function defineHour() {
     let hour = moment.getHours();
     let minut = moment.getMinutes();
     let second = moment.getSeconds();
+    let milliSecond = moment.getMilliseconds();
+
+    let hourBase = (360 / 12) * hour;
+    let hourOnMinut = ((360 / 12) / 60) * minut;
+    
+    let minutBase = (360 / 60) * minut;
+    let minuteOnSecond = ((360 / 60) / 60) * second;
+
+    let secondBase = (360 / 60) * second;
+    let millisecondOnSecond = ((360 / 60) / 1000) * milliSecond;
 
     let aiguilleHour = document.querySelector('.isHour');
     let aiguilleMinut = document.querySelector('.isMinut');
     let aiguilleSecond = document.querySelector('.isSecond');
 
-
-    aiguilleHour.style.transform = `translate(-50%, -100%) rotate(${(360 / 12) * hour}deg)`;
-    aiguilleMinut.style.transform = `translate(-50%, -100%) rotate(${(360 / 60) * minut}deg)`;
-    aiguilleSecond.style.transform = `translate(-50%, -100%) rotate(${(360 / 60) * second}deg)`;
+    aiguilleHour.style.transform = `translate(-50%, -100%) rotate(${hourBase + hourOnMinut}deg)`;
+    aiguilleMinut.style.transform = `translate(-50%, -100%) rotate(${minutBase + minuteOnSecond}deg)`;
+    aiguilleSecond.style.transform = `translate(-50%, -100%) rotate(${secondBase + millisecondOnSecond}deg)`;
 };
